@@ -6,7 +6,7 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 ## Features
 [画像付き詳細機能ショーケース](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features)：
 - オリジナルの txt2img と img2img モード
-- ワンクリックインストールでスクリプトを実行 (ただし python と git のインストールは必要)
+- ワンクリックインストールでスクリプトを実行 
 - アウトペインティング
 - インペインティング
 - カラースケッチ
@@ -14,7 +14,7 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 - Stable Diffusion Upscale
 - Attention, モデルがより注意を払うべきテキストの部分を指定
     - a man in a `((tuxedo))` - タキシードにより注意を払う
-    - a man in a `((tuxedo:1. 21)` - 代替構文
+    - a man in a `((tuxedo:1. 21))` - 代替構文
     - テキストを選択して `Ctrl+Up` または `Ctrl+Down` (MacOS の場合は `Command+Up` または `Command+Down`) を押すと、選択したテキストの注目度を自動的に調整する (匿名ユーザーによるコード)
 - ループバック、img2img の処理を複数回実行する
 - X/Y/Z プロット、 異なるパラメータを持つ画像の3次元プロットを描画する方法
