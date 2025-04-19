@@ -1,7 +1,9 @@
 name: Tests
 
 on:
-  workflow_dispatch:
+  - push
+  - pull_request
+  
 jobs:
   test:
     name: tests on CPU with empty model
