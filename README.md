@@ -105,18 +105,18 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 - [オンラインサービス一覧](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
 
 ### Automatic Installation on Linux
-1. Install the dependencies:
+1. 依存関係をインストールする：
 ```bash
-# Debian-based:
-sudo apt install wget git python3 python3-venv libgl1 libglib2.0-0
-# Red Hat-based:
+# Debianベース:
+sudo apt install wget git python3 python3-venv libgl1 libglib2. 0-0
+# Red Hat ベース:
 sudo dnf install wget git python3 gperftools-libs libglvnd-glx
-# openSUSE-based:
+# openSUSE ベース:
 sudo zypper install wget git python3 libtcmalloc4 libglvnd
-# Arch-based:
+# Arch ベース:
 sudo pacman -S wget git python3
 ```
-If your system is very new, you need to install python3.11 or python3.10:
+システムが新しい場合、python3. 11 or python3.10:
 ```bash
 # Ubuntu 24.04
 sudo add-apt-repository ppa:deadsnakes/ppa
@@ -125,28 +125,29 @@ sudo apt install python3.11
 
 # Manjaro/Arch
 sudo pacman -S yay
-yay -S python311 # do not confuse with python3.11 package
+yay -S python311 # python3.11 パッケージと混同しないように
 
-# Only for 3.11
-# Then set up env variable in launch script
+# 3.11 用のみ
+# その後起動スクリプトで env 変数を設定
 export python_cmd="python3.11"
-# or in webui-user.sh
+# or in webuii-user.sh
 python_cmd="python3.11"
 ```
-2. Navigate to the directory you would like the webui to be installed and execute the following command:
+2. webui をインストールしたいディレクトリに移動し、以下のコマンドを実行します：
 ```bash
 wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh
 ```
-Or just clone the repo wherever you want:
+あるいは、
 ```bash
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 ```
 
-3. Run `webui.sh`.
-4. Check `webui-user.sh` for options.
+3. `webui.sh` を実行する。
+4. `webui-user.sh` のオプションを確認してください。
+
 ### Installation on Apple Silicon
 
-Find the instructions [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon).
+説明書は[こちら](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon)。
 
 ## Contributing
 このリポジトリにコードを追加する方法は以下の通りです： [貢献](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing)
@@ -164,11 +165,12 @@ Googleや他の検索エンジンにwikiをクロールしてもらうために�
     - GFPGAN - https://github.com/TencentARC/GFPGAN.git
     - CodeFormer - https://github.com/sczhou/CodeFormer
     - ESRGAN - https://github.com/xinntao/ESRGAN
-    - SwinIR - https://github.com/JingyunLiang/SwinIR - Swin2SR -
+    - SwinIR - https://github.com/JingyunLiang/SwinIR
+    - Swin2SR - https://github.com/mv-lab/swin2sr
 - LDSR - https://github.com/Hafiidz/latent-diffusion
 - MiDaS - https://github.com/isl-org/MiDaS
 - Ideas for optimizations - https://github.com/basujindal/stable-diffusion
-- Cross Attention la.
+- クロスアテンションレイヤーの最適化 - Doggettx - https://github.com/Doggettx/stable-diffusion、迅速な編集のためのオリジナルアイデア。
 - クロスアテンションレイヤーの最適化 - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (元々は http://github.com/lstein/stable-diffusion)
 - サブ2次クロスアテンションレイヤーの最適化 - Alex Birch (https://github.com/Birch-san/diffusers/pull/1), Amin Rezaei (https://github.com/AminRezaei0x443/memory-efficient-attention)
 - テキストの反転 - Rinon Gal - https://github.com/rinongal/textual_inversion (彼のコードは使っていないが、彼のアイデアは使っている)。
