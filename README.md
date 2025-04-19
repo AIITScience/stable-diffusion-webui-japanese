@@ -1,120 +1,108 @@
 # Stable Diffusion web UI
-A web interface for Stable Diffusion, implemented using Gradio library.
+Gradioライブラリを使って実装されたStable Diffusionのウェブインターフェース。
 
 ![](screenshot.png)
 
 ## Features
-[Detailed feature showcase with images](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features):
-- Original txt2img and img2img modes
-- One click install and run script (but you still must install python and git)
-- Outpainting
-- Inpainting
-- Color Sketch
-- Prompt Matrix
+[画像付き詳細機能ショーケース](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features)：
+- オリジナルの txt2img と img2img モード
+- ワンクリックインストールでスクリプトを実行 (ただし python と git のインストールは必要)
+- アウトペインティング
+- インペインティング
+- カラースケッチ
+- プロンプトマトリックス
 - Stable Diffusion Upscale
-- Attention, specify parts of text that the model should pay more attention to
-    - a man in a `((tuxedo))` - will pay more attention to tuxedo
-    - a man in a `(tuxedo:1.21)` - alternative syntax
-    - select text and press `Ctrl+Up` or `Ctrl+Down` (or `Command+Up` or `Command+Down` if you're on a MacOS) to automatically adjust attention to selected text (code contributed by anonymous user)
-- Loopback, run img2img processing multiple times
-- X/Y/Z plot, a way to draw a 3 dimensional plot of images with different parameters
-- Textual Inversion
-    - have as many embeddings as you want and use any names you like for them
-    - use multiple embeddings with different numbers of vectors per token
-    - works with half precision floating point numbers
-    - train embeddings on 8GB (also reports of 6GB working)
-- Extras tab with:
-    - GFPGAN, neural network that fixes faces
-    - CodeFormer, face restoration tool as an alternative to GFPGAN
-    - RealESRGAN, neural network upscaler
-    - ESRGAN, neural network upscaler with a lot of third party models
-    - SwinIR and Swin2SR ([see here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/2092)), neural network upscalers
-    - LDSR, Latent diffusion super resolution upscaling
-- Resizing aspect ratio options
-- Sampling method selection
-    - Adjust sampler eta values (noise multiplier)
-    - More advanced noise setting options
-- Interrupt processing at any time
-- 4GB video card support (also reports of 2GB working)
-- Correct seeds for batches
-- Live prompt token length validation
-- Generation parameters
-     - parameters you used to generate images are saved with that image
-     - in PNG chunks for PNG, in EXIF for JPEG
-     - can drag the image to PNG info tab to restore generation parameters and automatically copy them into UI
-     - can be disabled in settings
-     - drag and drop an image/text-parameters to promptbox
-- Read Generation Parameters Button, loads parameters in promptbox to UI
-- Settings page
-- Running arbitrary python code from UI (must run with `--allow-code` to enable)
-- Mouseover hints for most UI elements
-- Possible to change defaults/mix/max/step values for UI elements via text config
-- Tiling support, a checkbox to create images that can be tiled like textures
-- Progress bar and live image generation preview
-    - Can use a separate neural network to produce previews with almost none VRAM or compute requirement
-- Negative prompt, an extra text field that allows you to list what you don't want to see in generated image
-- Styles, a way to save part of prompt and easily apply them via dropdown later
-- Variations, a way to generate same image but with tiny differences
-- Seed resizing, a way to generate same image but at slightly different resolution
-- CLIP interrogator, a button that tries to guess prompt from an image
-- Prompt Editing, a way to change prompt mid-generation, say to start making a watermelon and switch to anime girl midway
-- Batch Processing, process a group of files using img2img
-- Img2img Alternative, reverse Euler method of cross attention control
-- Highres Fix, a convenience option to produce high resolution pictures in one click without usual distortions
+- Attention, モデルがより注意を払うべきテキストの部分を指定
+    - a man in a `((tuxedo))` - タキシードにより注意を払う
+    - a man in a `((tuxedo:1. 21)` - 代替構文
+    - テキストを選択して `Ctrl+Up` または `Ctrl+Down` (MacOS の場合は `Command+Up` または `Command+Down`) を押すと、選択したテキストの注目度を自動的に調整する (匿名ユーザーによるコード)
+- ループバック、img2img の処理を複数回実行する
+- X/Y/Z プロット、 異なるパラメータを持つ画像の3次元プロットを描画する方法
+- テキストの反転
+    - 好きなだけ埋め込みを持ち、好きな名前を使うことができる
+    - トークンごとに異なるベクトル数を持つ複数の埋め込みを使うことができる
+    - 半精度浮動小数点数で動作する
+    - 8GBで埋め込みを学習することができる（6GBで動作したという報告もある）
+- Extras タブ：
+    - GFPGAN, 顔を修正するニューラルネットワーク
+    - CodeFormer, GFPGAN の代替となる顔復元ツール
+    - RealESRGAN, ニューラルネットワークアップスケーラ
+    - ESRGAN, サードパーティ製モデルを多数含むニューラルネットワークアップスケーラ
+    - SwinIR and Swin2SR ([こちらを参照](https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/2092)), ニューラルネットワークアップスケーラ
+    - LDSR, latent diffusion超解像アップスケーリング
+- アスペクト比のリサイズオプション
+- サンプリング方法の選択
+- サンプラーのエータ値（ノイズ乗数）の調整
+- より高度なノイズ設定オプション
+- いつでも処理の中断が可能
+- 4GBビデオカードのサポート（2GBでも動作報告あり)
+    - バッチの正しいシード
+- ライブプロンプトトークンの長さの検証
+- 生成パラメータ
+    - 画像生成に使用したパラメータはその画像と共に保存される
+    - PNGの場合はPNG chunks、 PNG の場合は PNG チャンクに、JPEG の場合は EXIF に
+    - 画像を PNG 情報タブにドラッグすると、生成パラメータが復元され、自動的に UI にコピーされます
+    - 設定で無効にできます
+    - 画像/テキストパラメータをプロンプトボックスにドラッグ＆ドロップ
+- 生成パラメータの読み込みボタン、 プロンプトボックスのパラメータを UI にロード
+- 設定ページ
+- UI から任意の python コードを実行（有効にするには `--allow-code` で実行する必要があります）
+- ほとんどの UI 要素のマウスオーバーヒント
+- テキスト設定により UI 要素のデフォルト値/ミックス値/最大値/ステップ値を変更可能
+- タイリングのサポート、 テクスチャのようにタイル化できる画像を作成するためのチェックボックス
+- プログレスバーとライブ画像生成プレビュー
+    - 別個のニューラルネットワークを使用して、VRAMや計算量をほとんど必要とせずにプレビューを生成できます
+- ネガティブプロンプト、生成された画像で見たくないものをリストアップできる追加のテキストフィールド
+- スタイル、プロンプトの一部を保存して、後でドロップダウンから簡単に適用する方法
+- バリエーション、同じ画像を生成する方法ですが、小さな違いがあります
+- Seed resizing: 同じ画像を少し異なる解像度で生成する方法
+- CLIP interrogator: 画像からプロンプトを推測しようとするボタン
+- Prompt Editing: 生成の途中でプロンプトを変更する方法、例えばスイカを作り始めて途中でアニメの女の子に切り替える
+- Batch Processing: img2img
+- Img2img Alternative、逆オイラー法による交差注意制御
+- Highres Fix, 通常の歪みなしにワンクリックで高解像度の画像を生成する便利なオプション
 - Reloading checkpoints on the fly
-- Checkpoint Merger, a tab that allows you to merge up to 3 checkpoints into one
-- [Custom scripts](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts) with many extensions from community
-- [Composable-Diffusion](https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/), a way to use multiple prompts at once
-     - separate prompts using uppercase `AND`
-     - also supports weights for prompts: `a cat :1.2 AND a dog AND a penguin :2.2`
-- No token limit for prompts (original stable diffusion lets you use up to 75 tokens)
-- DeepDanbooru integration, creates danbooru style tags for anime prompts
-- [xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), major speed increase for select cards: (add `--xformers` to commandline args)
-- via extension: [History tab](https://github.com/yfszzx/stable-diffusion-webui-images-browser): view, direct and delete images conveniently within the UI
-- Generate forever option
-- Training tab
-     - hypernetworks and embeddings options
-     - Preprocessing images: cropping, mirroring, autotagging using BLIP or deepdanbooru (for anime)
-- Clip skip
-- Hypernetworks
-- Loras (same as Hypernetworks but more pretty)
-- A separate UI where you can choose, with preview, which embeddings, hypernetworks or Loras to add to your prompt
-- Can select to load a different VAE from settings screen
-- Estimated completion time in progress bar
+- Checkpoint Merger, 最大3つのチェックポイントを1つにマージできるタブ
+- [Custom scripts](https.//github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Custom-Scripts)、コミュニティからの多くの拡張機能付き
+- [Composable-Diffusion](https://energy-based-model.github.io/Compositional-Visual-Generation-with-Composable-Diffusion-Models/), 複数のプロンプトを同時に使用する方法
+    - 大文字の `AND` を使ってプロンプトを分ける
+    - プロンプトの重み付けもサポート： `a cat :1.2 AND a dog AND a penguin :2.2`
+- プロンプトのトークン制限なし (オリジナルの stable diffusion では 75 トークンまで使用可能)
+- DeepDanbooru の統合、アニメのプロンプトに danbooru スタイルのタグを作成
+- [xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), select cards の大幅な速度向上: (`--xformers` をコマンドラインの引数に追加)
+- 拡張機能経由： [履歴タブ](https://github.com/yfszzx/stable-diffusion-webui-images-browser)：UI内で便利に画像を表示、直接表示、削除
+- Generate foreverオプション
+- Trainingタブ
+    - ハイパーネットワークとエンベッディングオプション
+    - 画像の前処理： トリミング、ミラーリング、BLIPまたはdeepdanbooru（アニメ用）を使った自動タグ付け
+- クリップスキップ
+- ハイパーネットワーク
+- Loras（Hypernetworks と同じですが、よりきれいです）
+- プロンプトに追加するエンベッディング、ハイパーネットワーク、Lorasをプレビュー付きで選択できる独立したUI
+- 設定画面から別のVAEを読み込むように選択可能
+- プログレスバーに表示される推定完了時間
 - API
-- Support for dedicated [inpainting model](https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion) by RunwayML
-- via extension: [Aesthetic Gradients](https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients), a way to generate images with a specific aesthetic by using clip images embeds (implementation of [https://github.com/vicgalle/stable-diffusion-aesthetic-gradients](https://github.com/vicgalle/stable-diffusion-aesthetic-gradients))
-- [Stable Diffusion 2.0](https://github.com/Stability-AI/stablediffusion) support - see [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#stable-diffusion-20) for instructions
-- [Alt-Diffusion](https://arxiv.org/abs/2211.06679) support - see [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alt-diffusion) for instructions
-- Now without any bad letters!
-- Load checkpoints in safetensors format
-- Eased resolution restriction: generated image's dimensions must be a multiple of 8 rather than 64
-- Now with a license!
-- Reorder elements in the UI from settings screen
-- [Segmind Stable Diffusion](https://huggingface.co/segmind/SSD-1B) support
+- 専用[インペインティングモデル](https://github.com/runwayml/stable-diffusion#inpainting-with-stable-diffusion)のサポート by RunwayML
+- 拡張機能経由： [Aesthetic Gradients](https://github.com/AUTOMATIC1111/stable-diffusion-webui-aesthetic-gradients)、クリップ画像を埋め込むことで特定の美的感覚を持った画像を生成する方法 ([https://github.com/vicgalle/stable-diffusion-aesthetic-gradients](https://github.com/vicgalle/stable-diffusion-aesthetic-gradients)の実装)
+- [Stable Diffusion 2.0](https://github.com/Stability-AI/stablediffusion)をサポート - 使い方は[wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#stable-diffusion-20)を参照
+- [Alt-Diffusion](https://arxiv.org/abs/2211.06679)のサポート - 使い方は[wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#alt-diffusion)を参照
+- 悪い文字がなくなりました！
+- Safetensors フォーマットでチェックポイントをロード
+- 解像度の制限を緩和: 生成されるイメージの寸法は 64 ではなく 8 の倍数でなければなりません
+- ライセンスが付きました！
+- 設定画面からUIの要素を並び替える
+- [Segmind Stable Diffusion](https://huggingface.co/segmind/SSD-1B)をサポート。
 
 ## Installation and Running
-Make sure the required [dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies) are met and follow the instructions available for:
-- [NVidia](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs) (recommended)
-- [AMD](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs) GPUs.
-- [Intel CPUs, Intel GPUs (both integrated and discrete)](https://github.com/openvinotoolkit/stable-diffusion-webui/wiki/Installation-on-Intel-Silicon) (external wiki page)
+必要な[dependencies](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Dependencies)が満たされていることを確認し、利用可能な指示に従ってください：
+- [NVidia](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs) (推奨)
+- [AMD](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-AMD-GPUs) GPU。
+- [Intel CPUs, Intel GPUs (integrated and discrete both)](https://github.com/openvinotoolkit/stable-diffusion-webui/wiki/Installation-on-Intel-Silicon) (external wiki page)
 - [Ascend NPUs](https://github.com/wangshuai09/stable-diffusion-webui/wiki/Install-and-run-on-Ascend-NPUs) (external wiki page)
 
-Alternatively, use online services (like Google Colab):
+あるいは、オンラインサービス (Google Colab など) を利用する：
 
-- [List of Online Services](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
-
-### Installation on Windows 10/11 with NVidia-GPUs using release package
-1. Download `sd.webui.zip` from [v1.0.0-pre](https://github.com/AUTOMATIC1111/stable-diffusion-webui/releases/tag/v1.0.0-pre) and extract its contents.
-2. Run `update.bat`.
-3. Run `run.bat`.
-> For more details see [Install-and-Run-on-NVidia-GPUs](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs)
-
-### Automatic Installation on Windows
-1. Install [Python 3.10.6](https://www.python.org/downloads/release/python-3106/) (Newer version of Python does not support torch), checking "Add Python to PATH".
-2. Install [git](https://git-scm.com/download/win).
-3. Download the stable-diffusion-webui repository, for example by running `git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git`.
-4. Run `webui-user.bat` from Windows Explorer as normal, non-administrator, user.
+- [オンラインサービス一覧](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
 
 ### Automatic Installation on Linux
 1. Install the dependencies:
@@ -161,45 +149,42 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 Find the instructions [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon).
 
 ## Contributing
-Here's how to add code to this repo: [Contributing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing)
+このリポジトリにコードを追加する方法は以下の通りです： [貢献](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing)
 
 ## Documentation
+ドキュメントはこのREADMEからプロジェクトの[wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki)に移動しました。
 
-The documentation was moved from this README over to the project's [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki).
-
-For the purposes of getting Google and other search engines to crawl the wiki, here's a link to the (not for humans) [crawlable wiki](https://github-wiki-see.page/m/AUTOMATIC1111/stable-diffusion-webui/wiki).
-
+Googleや他の検索エンジンにwikiをクロールしてもらうために、ここに（人間用ではない）[クロール可能なwiki](https://github-wiki-see.page/m/AUTOMATIC1111/stable-diffusion-webui/wiki)へのリンクがあります。
 ## Credits
-Licenses for borrowed code can be found in `Settings -> Licenses` screen, and also in `html/licenses.html` file.
+借用したコードのライセンスは `Settings -> Licenses` 画面、および `html/licenses.html` ファイルで確認できます。
 
 - Stable Diffusion - https://github.com/Stability-AI/stablediffusion, https://github.com/CompVis/taming-transformers, https://github.com/mcmonkey4eva/sd3-ref
 - k-diffusion - https://github.com/crowsonkb/k-diffusion.git
 - Spandrel - https://github.com/chaiNNer-org/spandrel implementing
-  - GFPGAN - https://github.com/TencentARC/GFPGAN.git
-  - CodeFormer - https://github.com/sczhou/CodeFormer
-  - ESRGAN - https://github.com/xinntao/ESRGAN
-  - SwinIR - https://github.com/JingyunLiang/SwinIR
-  - Swin2SR - https://github.com/mv-lab/swin2sr
+    - GFPGAN - https://github.com/TencentARC/GFPGAN.git
+    - CodeFormer - https://github.com/sczhou/CodeFormer
+    - ESRGAN - https://github.com/xinntao/ESRGAN
+    - SwinIR - https://github.com/JingyunLiang/SwinIR - Swin2SR -
 - LDSR - https://github.com/Hafiidz/latent-diffusion
 - MiDaS - https://github.com/isl-org/MiDaS
 - Ideas for optimizations - https://github.com/basujindal/stable-diffusion
-- Cross Attention layer optimization - Doggettx - https://github.com/Doggettx/stable-diffusion, original idea for prompt editing.
-- Cross Attention layer optimization - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (originally http://github.com/lstein/stable-diffusion)
-- Sub-quadratic Cross Attention layer optimization - Alex Birch (https://github.com/Birch-san/diffusers/pull/1), Amin Rezaei (https://github.com/AminRezaei0x443/memory-efficient-attention)
-- Textual Inversion - Rinon Gal - https://github.com/rinongal/textual_inversion (we're not using his code, but we are using his ideas).
-- Idea for SD upscale - https://github.com/jquesnelle/txt2imghd
-- Noise generation for outpainting mk2 - https://github.com/parlance-zz/g-diffuser-bot
+- Cross Attention la.
+- クロスアテンションレイヤーの最適化 - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (元々は http://github.com/lstein/stable-diffusion)
+- サブ2次クロスアテンションレイヤーの最適化 - Alex Birch (https://github.com/Birch-san/diffusers/pull/1), Amin Rezaei (https://github.com/AminRezaei0x443/memory-efficient-attention)
+- テキストの反転 - Rinon Gal - https://github.com/rinongal/textual_inversion (彼のコードは使っていないが、彼のアイデアは使っている)。
+- SDアップスケールのアイデア - https://github.com/jquesnelle/txt2imghd
+- ノイズ生成 for アウトペインティング mk2 - https://github.com/parlance-zz/g-diffuser-bot
 - CLIP interrogator idea and borrowing some code - https://github.com/pharmapsychotic/clip-interrogator
 - Idea for Composable Diffusion - https://github.com/energy-based-model/Compositional-Visual-Generation-with-Composable-Diffusion-Models-PyTorch
 - xformers - https://github.com/facebookresearch/xformers
-- DeepDanbooru - interrogator for anime diffusers https://github.com/KichangKim/DeepDanbooru
-- Sampling in float32 precision from a float16 UNet - marunine for the idea, Birch-san for the example Diffusers implementation (https://github.com/Birch-san/diffusers-play/tree/92feee6)
-- Instruct pix2pix - Tim Brooks (star), Aleksander Holynski (star), Alexei A. Efros (no star) - https://github.com/timothybrooks/instruct-pix2pix
-- Security advice - RyotaK
-- UniPC sampler - Wenliang Zhao - https://github.com/wl-zhao/UniPC
+- DeepDanbooru - interrogator for anime diffusers https://github. com/KichangKim/DeepDanbooru
+- float16 UNetからfloat32精度でサンプリング - アイデアはmarunineさん、Diffusersの実装例はBirchさん (https://github.com/Birch-san/diffusers-play/tree/92feee6)
+- pix2pixを教える - Tim Brooks (star), Aleksander Holynski (star), Alexei A. Efros (no star) - https://github.com/timothybrooks/instruct-pix2pix
+- セキュリティアドバイス - RyotaK
+- UniPCサンプラー - Wenliang Zhao - https://github. com/wl-zhao/UniPC
 - TAESD - Ollin Boer Bohan - https://github.com/madebyollin/taesd
 - LyCORIS - KohakuBlueleaf
 - Restart sampling - lambertae - https://github.com/Newbeeer/diffusion_restart_sampling
 - Hypertile - tfernd - https://github.com/tfernd/HyperTile
-- Initial Gradio script - posted on 4chan by an Anonymous user. Thank you Anonymous user.
-- (You)
+- Initial Gradio script - Anonymous userによって4chanに投稿されました。匿名ユーザーさん、ありがとうございます。
+- (あなた)
