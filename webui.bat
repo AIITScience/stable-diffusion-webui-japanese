@@ -28,7 +28,7 @@ echo 警告:PIPバージョンをアップグレードできませんでした。
 :accelerate_launch
 accerelate launch --num_cpu_threads_per_process=6 launch.py >tmp/stdout.txt 2>tmp/stderr.txt
 if not %ERRORLEVEL% == 0 goto :launch
-if EXIST tmp/restart goto :skip_venv
+if EXIST tmp/restart goto :accelerate_launch
 pause
 exit /b
 
