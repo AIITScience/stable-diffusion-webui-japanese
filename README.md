@@ -5,6 +5,7 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 
 ## Features
 [画像付き詳細機能ショーケース](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features)：
+- [stable diffusion easier](https://aiitscience.github.io/Stable-Diffusion-Easier-Japanese/)の後継ソフト
 - オリジナルの txt2img と img2img モード
 - ワンクリックインストールでスクリプトを実行 
 - アウトペインティング
