@@ -9,15 +9,14 @@ title Stable-Diffusion-WebUI - pythonの確認
 python -c "" >tmp/stdout.txt 2>tmp/stderr.txt
 if %ERRORLEVEL% == 0 goto :check_pip
 title Stable-Diffusion-WebUI - pythonのインストール
-echo pythonのパスが通っていません。パスを通して("Add Python to environment variables")インストールしてください。
-pyinstall
+echo pythonがインストールされていません。
 goto :show_stdout_stderr
 
 :check_pip
 title Stable-Diffusion-WebUI - pipの確認
 python -m pip --help >tmp/stdout.txt 2>tmp/stderr.txt
-title Stable-Diffusion-WebUI - pipのインストール
 if %ERRORLEVEL% == 0 goto :upgrade_pip
+title Stable-Diffusion-WebUI - pipのインストール
 if "%PIP_INSTALLER_LOCATION%" == "" goto :show_stdout_stderr
 python "%PIP_INSTALLER_LOCATION%" >tmp/stdout.txt 2>tmp/stderr.txt
 if %ERRORLEVEL% == 0 goto :accelerate_launch
