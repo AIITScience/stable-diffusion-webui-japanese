@@ -5,6 +5,7 @@ if defined GIT (set "GIT_PYTHON_GIT_EXECUTABLE=%GIT%")
 set SD_WEBUI_RESTART=tmp/restart
 set ERROR_REPORTING=FALSE
 
+if %PYTHON_CHECK% == false goto :check_pip
 title Stable-Diffusion-WebUI - python‚ÌŠm”F
 python -c "" >tmp/stdout.txt 2>tmp/stderr.txt
 if %ERRORLEVEL% == 0 goto :check_pip
