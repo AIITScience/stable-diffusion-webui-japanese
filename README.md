@@ -98,7 +98,7 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 - [オンラインサービス一覧](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
 ### Installation on Windows 10/11 using release package
 [![Static Badge](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-green)](https://github.com/AIITScience/stable-diffusion-webui-japanese/releases/download/v1/sdwebuiSetup.exe)
-### Automatic Installation on Linux
+### Installation on Linux
 1. 依存関係をインストールする：
 ```bash
 # Debianベース:
