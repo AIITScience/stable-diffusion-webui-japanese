@@ -120,6 +120,8 @@ set COMMANDLINE_ARGS=--use-cpu all --precision full --no-half --skip-torch-cuda-
 set COMMANDLINE_ARGS=--xformers
 # model change
 set COMMANDLINE_ARGS=--no-download-sd-model --ckpt <pathtockpt>
+# auto update
+set COMMANDLINE_ARGS=--update-check --update-all-extensions
 ```
 5. 実行。`webui.bat`
 ### Installation on Linux
