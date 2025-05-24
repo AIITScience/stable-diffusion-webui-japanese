@@ -95,9 +95,33 @@ Gradioライブラリを使って実装されたStable Diffusionのウェブイ�
 - [Segmind Stable Diffusion](https://huggingface.co/segmind/SSD-1B)をサポート。
 
 ## Installation and Running
-- [オンラインサービス一覧](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
-### Installation on Windows 10/11 using release package
+[オンラインサービス一覧](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services)
+### Installation on Windows 10/11
+
 [![Static Badge](https://img.shields.io/badge/%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89-green)](https://github.com/AIITScience/stable-diffusion-webui-japanese/releases/download/v1/sdwebuiSetup.exe)
+
+又は、以下の方法でできます。
+1. Gitをインストール。
+```
+winget install --id Git.Git -e --source winget
+```
+2. このリポジトリをクローン。
+```
+git clone https://github.com/AIITScience/stable-diffusion-webui-japanese.git
+```
+3. Pythonをインストール。`pyinstall`
+4. オプションをセット。
+
+例:
+```bash
+# CPU mode
+set COMMANDLINE_ARGS=--use-cpu all --precision full --no-half --skip-torch-cuda-test
+# xformers
+set COMMANDLINE_ARGS=--xformers
+# model change
+set COMMANDLINE_ARGS=--no-download-sd-model --ckpt <pathtockpt>
+```
+5. 実行。`webui.bat`
 ### Installation on Linux
 1. 依存関係をインストールする：
 ```bash
@@ -120,20 +144,15 @@ sudo apt install python3.11
 # Manjaro/Arch
 sudo pacman -S yay
 yay -S python311 # python3.11 パッケージと混同しないように
-
-# 3.11 用のみ
+```
+3.11 用のみ
+```bash
 # その後起動スクリプトで env 変数を設定
 export python_cmd="python3.11"
-# or in webuii-user.sh
-python_cmd="python3.11"
 ```
 2. webui をインストールしたいディレクトリに移動し、以下のコマンドを実行します：
 ```bash
-wget -q https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh
-```
-あるいは、
-```bash
-git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+git clone https://github.com/AIITScience/stable-diffusion-webui-japanese
 ```
 
 3. `webui.sh` を実行する。
@@ -141,13 +160,43 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 
 ### Installation on Apple Silicon
 
-説明書は[こちら](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon)。
+1. Homebrewをインストール。
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+2. 依存関係をインストール。
+```
+brew install cmake protobuf rust python@3.10 git wget
+```
+3. リポジトリのクローン。
+```
+git clone https://github.com/AIITScience/stable-diffusion-webui-japanese
+```
+4. モデルをダウンロード。
+
+例:
+- [Stable Diffusion 1.4](https://huggingface.co/CompVis/stable-diffusion-v-1-4-original)の[sd-v-1-4.ckpt](https://huggingface.co/CompVis/stable-diffusion-v-1-4-original/resolve/main/sd-v1-4.ckpt)
+- [Stable Diffusion 1.5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5)の[v1-5-pruned-emaonly.safetensors](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/v1-5-pruned-emaonly.safetensors)
+- [Stable-Diffusion-1.5-Inpainting](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting)の[sd-v-1-5-inpainting.ckpt](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-inpainting/resolve/main/sd-v1-5-inpainting.ckpt)
+
+⚠️以下のモデルは、[このページ](https://github.com/Stability-AI/stablediffusion/raw/main/configs/stable-diffusion/v2-inference-v.yaml)をyamlファイルとして保存してモデルと一緒に置かないといけません。
+- [Stable Diffusion 2](https://huggingface.co/stabilityai/stable-diffusion-2)の[768-v-ema.safetensors](https://huggingface.co/stabilityai/stable-diffusion-2/resolve/main/768-v-ema.safetensors)
+- [Stable Diffusion 2.1](https://huggingface.co/stabilityai/stable-diffusion-2-1)の[v2-1_768-ema-pruned.safetensors](https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.safetensors)
+
+⚠️以下のモデルは、[このページ](https://github.com/Stability-AI/stablediffusion/raw/main/configs/stable-diffusion/v2-midas-inference.yaml)をyamlファイルとして保存してモデルと一緒に置かないといけません。
+- [Stable Diffusion 2 Depth](https://huggingface.co/stabilityai/stable-diffusion-2-depth)の[512-depth-ema.safetensors](https://huggingface.co/stabilityai/stable-diffusion-2-depth/resolve/main/512-depth-ema.safetensors)
+
+5. WebUIのディレクトリに移動。
+```
+cd stable-diffusion-webui-japanese
+```
+6. WebUIを実行。`./webui.sh`
 
 ## Contributing
 このリポジトリにコードを追加する方法は以下の通りです： [貢献](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing)
 
 ## Documentation
-ドキュメントはこのREADMEからプロジェクトの[wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki)に移動しました。
+- 本家の[wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki)
 
 Googleや他の検索エンジンにwikiをクロールしてもらうために、ここに（人間用ではない）[クロール可能なwiki](https://github-wiki-see.page/m/AUTOMATIC1111/stable-diffusion-webui/wiki)へのリンクがあります。
 ## Credits
@@ -177,7 +226,7 @@ Googleや他の検索エンジンにwikiをクロールしてもらうために�
 - float16 UNetからfloat32精度でサンプリング - アイデアはmarunineさん、Diffusersの実装例はBirchさん (https://github.com/Birch-san/diffusers-play/tree/92feee6)
 - pix2pixを教える - Tim Brooks (star), Aleksander Holynski (star), Alexei A. Efros (no star) - https://github.com/timothybrooks/instruct-pix2pix
 - セキュリティアドバイス - RyotaK
-- UniPCサンプラー - Wenliang Zhao - https://github. com/wl-zhao/UniPC
+- UniPCサンプラー - Wenliang Zhao - https://github.com/wl-zhao/UniPC
 - TAESD - Ollin Boer Bohan - https://github.com/madebyollin/taesd
 - LyCORIS - KohakuBlueleaf
 - Restart sampling - lambertae - https://github.com/Newbeeer/diffusion_restart_sampling
