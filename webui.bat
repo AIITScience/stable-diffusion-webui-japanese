@@ -34,6 +34,7 @@ title Stable-Diffusion-WebUI - accelerateでの起動
 accerelate launch --num_cpu_threads_per_process=6 launch.py >tmp/stdout.txt 2>tmp/stderr.txt
 if not %ERRORLEVEL% == 0 goto :launch
 if EXIST tmp/restart goto :accelerate_launch
+echo スクリプトが終了しました。
 pause
 exit /b
 
@@ -41,6 +42,7 @@ exit /b
 title Stable-Diffusion-WebUI - 起動
 python launch.py %*
 if EXIST tmp/restart goto :accelerate_launch
+echo スクリプトが終了しました。
 pause
 exit /b
 
