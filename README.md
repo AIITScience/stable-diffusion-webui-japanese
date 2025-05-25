@@ -215,7 +215,7 @@ Googleや他の検索エンジンにwikiをクロールしてもらうために�
 - LDSR - https://github.com/Hafiidz/latent-diffusion
 - MiDaS - https://github.com/isl-org/MiDaS
 - Ideas for optimizations - https://github.com/basujindal/stable-diffusion
-- クロスアテンションレイヤーの最適化 - Doggettx - https://github.com/Doggettx/stable-diffusion、迅速な編集のためのオリジナルアイデア。
+- クロスアテンションレイヤーの最適化 - Doggettx - https://github.com/Doggettx/stable-diffusion　、迅速な編集のためのオリジナルアイデア。
 - クロスアテンションレイヤーの最適化 - InvokeAI, lstein - https://github.com/invoke-ai/InvokeAI (元々は http://github.com/lstein/stable-diffusion)
 - サブ2次クロスアテンションレイヤーの最適化 - Alex Birch (https://github.com/Birch-san/diffusers/pull/1), Amin Rezaei (https://github.com/AminRezaei0x443/memory-efficient-attention)
 - テキストの反転 - Rinon Gal - https://github.com/rinongal/textual_inversion (彼のコードは使っていないが、彼のアイデアは使っている)。
