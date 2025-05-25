@@ -9,7 +9,6 @@ if %PYTHON_CHECK% == false goto :check_pip
 title Stable-Diffusion-WebUI - pythonの確認
 python -c "" >tmp/stdout.txt 2>tmp/stderr.txt
 if %ERRORLEVEL% == 0 goto :check_pip
-title Stable-Diffusion-WebUI - pythonのインストール
 echo pythonがインストールされていません。
 goto :show_stdout_stderr
 
